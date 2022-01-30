@@ -1,7 +1,9 @@
 // Testing out some pipeline stuff
 
 pipeline{
-	agent any
+	agent{
+		agent_1
+	}
 
 	stages{
 		stage('test 1'){
