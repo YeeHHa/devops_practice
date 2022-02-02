@@ -2,13 +2,16 @@
 
 pipeline{
 	agent{
-		label 'agent_1'
+		label  'agent_1'
 	}
 
 	stages{
-		stage('test 1'){
+		stage('setup'){
 			steps{
-				echo 'test stage 1'
+				script{
+					env.MINOR_VERSION = sh(returnStdout: true, script: "git rev-list --all --count").trim()
+					currentBuild.setDisplayName("${env.MINOR_VERSION}")
+				}
 			}
 		}
 
