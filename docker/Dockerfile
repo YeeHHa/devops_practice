@@ -1,13 +1,19 @@
-FROM ubuntu:latest
+From docker:latest
 
-RUN apt update & apt upgrade -y 
+RUN mkdir -p  /var/run/sshd
 
-RUN apt install python3 && apt install pip3
+RUN apk update && \
+		apk add  --no-cache openssh-server
 
-RUN pip3 install flask 
+RUN useradd -rm -d /home/jenkins_user -s /bin/bash jenkins_user && \
+		echo jenkins_user:4441 | chpasswd 
 
-RUN mkdir flask_project && cd flask_project
+RUN mkdir /home/jenkins_user/.ssh && \
+		chmod 700 /home/jenkins_user/.ssh
 
-COPY ../main_engine.py ./flask_project/
+COPY id_rsa.pub /home/jenkins_user/.ssh/authorized_keys
 
-CMD ["python3 ./flask_project/main_engine.py"]
+RUN chown jenkins_user:jenkins_user -R /home/jenkins_user/.ssh && \
+		chmod 600 /home/jenkins_user/.ssh/authorized_keys
+
+CMD [ "/usr/sbin/sshd", "-D" ]
