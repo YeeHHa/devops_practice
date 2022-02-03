@@ -1,7 +1,7 @@
 // Testing out some pipeline stuff
 
 pipeline{
-	
+	agent none
 
 	stages{
 		agent any
