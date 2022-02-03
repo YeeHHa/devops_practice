@@ -34,7 +34,7 @@ pipeline{
 		// }
 			
 			steps{
-				echo 'test stage 3'
+				sh 'docker run hello-world'
 			}
 		}
 	}
