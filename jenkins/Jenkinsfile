@@ -11,6 +11,7 @@ pipeline{
 				script{
 					env.MINOR_VERSION = sh(returnStdout: true, script: "git rev-list --all --count").trim()
 					currentBuild.setDisplayName("${env.MINOR_VERSION}")
+					echo ${env.MINOR_VERSION}
 				}
 			}
 		}
@@ -29,12 +30,16 @@ pipeline{
 		}
 
 		stage('test 3'){
-		// 	agent{
-		// 	label 'any'
-		// }
+			agent{
+				docker{
+					image 'docker:latest'
+				}
+			}	
 			
 			steps{
-				sh 'docker run hello-world'
+				script{
+					sh "docker images"
+				}
 			}
 		}
 	}
