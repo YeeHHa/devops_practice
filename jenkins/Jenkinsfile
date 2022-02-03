@@ -6,6 +6,7 @@ pipeline{
 	stages{
 		agent any
 		stage('setup'){
+			agent any
 			steps{
 				script{
 					env.MINOR_VERSION = sh(returnStdout: true, script: "git rev-list --all --count").trim()
