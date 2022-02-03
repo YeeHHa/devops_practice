@@ -4,7 +4,9 @@ pipeline{
 	agent none
 
 	stages{
-		agent any
+		agent{
+			label 'any'
+		}
 		stage('setup'){
 			agent any
 			steps{
@@ -29,7 +31,9 @@ pipeline{
 		}
 
 		stage('test 3'){
-			agent any
+			agent{
+			label 'any'
+		}
 			
 			steps{
 				echo 'test stage 3'
