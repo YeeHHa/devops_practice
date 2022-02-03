@@ -11,7 +11,7 @@ pipeline{
 				script{
 					env.MINOR_VERSION = sh(returnStdout: true, script: "git rev-list --all --count").trim()
 					currentBuild.setDisplayName("${env.MINOR_VERSION}")
-					echo ${env.MINOR_VERSION}
+					echo $env.MINOR_VERSION
 				}
 			}
 		}
