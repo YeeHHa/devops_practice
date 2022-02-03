@@ -18,7 +18,7 @@ pipeline{
 		stage('dockerize'){
 			steps{
 				script{
-					sh "docker ps"
+					echo 'test 2'
 				}
 			}
 		}
