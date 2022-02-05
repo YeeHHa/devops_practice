@@ -26,7 +26,7 @@ pipeline{
 			agent{
 				docker{
 					image 'sonarsource/sonar-scanner-cli:latest'
-					args '--user scanner-cli -v $WORKSPACE/sonar_cache:/opt/sonar-scanner/.sonar/cache'
+					args ' -v $WORKSPACE/sonar_cache:/opt/sonar-scanner/.sonar/cache'
 					
 					
 				}
@@ -40,7 +40,7 @@ pipeline{
 						
 						pwd
 						
-						echo $SONAR_SCANNER_HOME
+						echo ${UID}
 						sonar-scanner \
 						-Dsonar.organization=yeehha \
 						-Dsonar.projectKey=${sonarKey} \
