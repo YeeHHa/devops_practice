@@ -4,9 +4,7 @@ pipeline{
 	agent none
 
 	environment{
-		withCredentials([string(credentialsId: 'sonar_project_key', variable: 'sonar_key_value')]) {
-    		sonarKey = $sonar_key_value
-		}
+		sonarKey = credentials('sonar_project_key')
 		
 	}
 
