@@ -25,7 +25,7 @@ pipeline{
 		stage('dockerize'){
 			agent{
 				docker{
-					image 'sonarsource/sonar-scanner-cli'
+					image 'sonarsource/sonar-scanner-cli:latest'
 					args '--user 1001 -v $WORKSPACE/sonar_cache:/opt/sonar-scanner/.sonar/cache'
 					
 					
