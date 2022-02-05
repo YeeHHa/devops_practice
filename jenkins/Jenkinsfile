@@ -26,11 +26,12 @@ pipeline{
 			agent{
 				docker{
 					image 'sonarsource/sonar-scanner-cli'
+					args '-e SONAR_TOKEN=${sonar_token}'
 				}
 			}
 			steps{
 				script{
-					SONAR_TOKEN_A = credentials('sonar_token_1')
+					
 					sh '''
 						pwd
 						export SONAR_TOKEN=${SONAR_TOKEN_A}
