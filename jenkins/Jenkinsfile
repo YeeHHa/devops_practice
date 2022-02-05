@@ -35,9 +35,11 @@ pipeline{
 				script{
 					
 					echo env.WORKSPACE
+					whoami
 					sh '''
 						
 						pwd
+						whoami
 						sonar-scanner \
 						-Dsonar.organization=yeehha \
 						-Dsonar.projectKey=${sonarKey} \
