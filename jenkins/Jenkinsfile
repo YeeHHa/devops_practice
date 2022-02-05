@@ -33,7 +33,7 @@ pipeline{
 					env.SONAR_TOKEN = credentials('sonar_token_1')
 					sh '''
 						pwd
-						export SONAR_TOKEN=${sonar_token_1}
+						export SONAR_TOKEN=${env.SONAR_TOKEN}
 						sonar-scanner \
 						-Dsonar.organization=yeehha \
 						-Dsonar.projectKey=${sonarKey} \
