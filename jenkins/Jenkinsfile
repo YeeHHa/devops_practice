@@ -5,7 +5,7 @@ pipeline{
 
 	environment{
 		withCredentials([string(credentialsId: 'sonar_project_key', variable: 'sonar_key_value')]) {
-    		sonar_key = sonar_key_value
+    		sonarKey = sonar_key_value
 		}
 		
 	}
@@ -27,15 +27,15 @@ pipeline{
 			agent{
 				docker{
 					image 'sonarsource/sonar-scanner-cli'
+				}
 			}
-	}
 			steps{
 				script{
 					sh '''
 						pwd
 						sonar-scanner \
 						-Dsonar.organization=yeeha \
-						-Dsonar.projectKey=${sonar_key} \
+						-Dsonar.projectKey=${sonarKey} \
 						-Dsonar.sources=. \
 						-Dsonar.host.url=https://sonarcloud.io
 					'''
