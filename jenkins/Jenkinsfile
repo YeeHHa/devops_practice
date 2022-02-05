@@ -30,10 +30,10 @@ pipeline{
 			}
 			steps{
 				script{
-					env.SONAR_TOKEN = credentials('sonar_token_1')
+					SONAR_TOKEN_A = credentials('sonar_token_1')
 					sh '''
 						pwd
-						export SONAR_TOKEN=${env.SONAR_TOKEN}
+						export SONAR_TOKEN=${SONAR_TOKEN_A}
 						sonar-scanner \
 						-Dsonar.organization=yeehha \
 						-Dsonar.projectKey=${sonarKey} \
