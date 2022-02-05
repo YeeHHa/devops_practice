@@ -32,7 +32,7 @@ pipeline{
 					sh '''
 						pwd
 						sonar-scanner \
-						-Dsonar.organization=yeeha \
+						-Dsonar.organization=yeehha \
 						-Dsonar.projectKey=${sonarKey} \
 						-Dsonar.sources=. \
 						-Dsonar.host.url=https://sonarcloud.io
