@@ -26,6 +26,7 @@ pipeline{
 			agent{
 				docker{
 					image 'sonarsource/sonar-scanner-cli'
+					args ' -v $HOME/devops_project/sonarcache:/opt/sonar-scanner/.sonar/cache'
 					
 				}
 			}
@@ -34,7 +35,6 @@ pipeline{
 					
 					sh '''
 						pwd
-						export SONAR_TOKEN=${SONAR_TOKEN_A}
 						sonar-scanner \
 						-Dsonar.organization=yeehha \
 						-Dsonar.projectKey=${sonarKey} \
