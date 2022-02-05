@@ -33,7 +33,7 @@ pipeline{
 			steps{
 				script{
 					
-					echo $WORKSPACE
+					echo env.WORKSPACE
 					sh '''
 						
 						pwd
