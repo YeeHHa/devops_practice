@@ -39,7 +39,7 @@ pipeline{
 					sh '''
 						
 						pwd
-						echo $SONAR_USER_HOME
+						echo $SRC_PATH
 						sonar-scanner \
 						-Dsonar.organization=yeehha \
 						-Dsonar.projectKey=${sonarKey} \
