@@ -26,6 +26,7 @@ pipeline{
 			agent{
 				docker{
 					image 'sonarsource/sonar-scanner-cli'
+					args ' -v env.WORKSPACE/sonar_cache:/opt/sonar-scanner/.sonar/cache'
 					
 					
 				}
