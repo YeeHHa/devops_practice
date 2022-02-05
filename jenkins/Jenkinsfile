@@ -26,7 +26,7 @@ pipeline{
 			agent{
 				docker{
 					image 'sonarsource/sonar-scanner-cli'
-					args '-e SONAR_TOKEN=${sonar_token}'
+					
 				}
 			}
 			steps{
@@ -39,7 +39,9 @@ pipeline{
 						-Dsonar.organization=yeehha \
 						-Dsonar.projectKey=${sonarKey} \
 						-Dsonar.sources=. \
-						-Dsonar.host.url=https://sonarcloud.io
+						-Dsonar.host.url=https://sonarcloud.io \
+						-Dsonar.login=${sonarToken}
+
 					'''
 				}
 			}
