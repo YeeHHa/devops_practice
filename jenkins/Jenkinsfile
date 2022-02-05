@@ -26,14 +26,16 @@ pipeline{
 			agent{
 				docker{
 					image 'sonarsource/sonar-scanner-cli'
-					// args ' -v $HOME/opt/sonar-scanner/.sonar/cache:/opt/sonar-scanner/.sonar/cache'
+					args ' -v ${WORKSPACE}/opt/sonar-scanner/.sonar/cache:/opt/sonar-scanner/.sonar/cache'
 					
 				}
 			}
 			steps{
 				script{
 					
+					echo $WORKSPACE
 					sh '''
+						
 						pwd
 						sonar-scanner \
 						-Dsonar.organization=yeehha \
