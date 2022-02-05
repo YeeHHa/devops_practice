@@ -40,7 +40,7 @@ pipeline{
 						
 						pwd
 						
-						echo ${UID}
+						echo $UID
 						sonar-scanner \
 						-Dsonar.organization=yeehha \
 						-Dsonar.projectKey=${sonarKey} \
