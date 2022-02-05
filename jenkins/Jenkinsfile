@@ -5,6 +5,7 @@ pipeline{
 
 	environment{
 		sonarKey = credentials('sonar_project_key')
+		sonarToken = credentials('sonar_token_1')
 		
 	}
 
@@ -31,6 +32,7 @@ pipeline{
 				script{
 					sh '''
 						pwd
+						export SONAR_TOKEN=${sonar_token_1}
 						sonar-scanner \
 						-Dsonar.organization=yeehha \
 						-Dsonar.projectKey=${sonarKey} \
