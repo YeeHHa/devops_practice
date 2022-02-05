@@ -34,11 +34,12 @@ pipeline{
 			steps{
 				script{
 					
-					echo env.WORKSPACE
+					
 					
 					sh '''
 						
 						pwd
+						chmod -R /opt/sonar-scanner/.sonar
 						echo $SONAR_SCANNER_HOME
 						sonar-scanner \
 						-Dsonar.organization=yeehha \
