@@ -10,4 +10,4 @@ COPY ./src/ /workstation/
 
 RUN cd /workstation && pip3 install -r requirements.txt
 
-CMD ['python3 main_engine.py']
+CMD ["python3", "main_engine.py"]
