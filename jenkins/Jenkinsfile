@@ -6,7 +6,10 @@ pipeline{
 	environment{
 		sonarKey = credentials('sonar_project_key')
 		sonarToken = credentials('sonar_token_1')
-		
+		docker_reg = "kradditz"
+		docker_file_path = './docker/python.docker'
+		project_name = 'python_project'
+		docker_image = "${docker_reg}/${project_name}:${BUILD_NUMBER}"
 	}
 
 	stages{
@@ -22,7 +25,7 @@ pipeline{
 			}
 		}
 
-		stage('dockerize'){
+		stage('static analysis'){
 			agent{
 				docker{
 					image 'sonarsource/sonar-scanner-cli:latest'
@@ -52,18 +55,22 @@ pipeline{
 			}
 		}
 
-		// stage('test 3'){
-		// 	agent{
-		// 		docker{
-		// 			image 'docker:latest'
-		// 		}
-		// 	}	
+		stage('dockerize'){
+			agent any
 			
-		// 	steps{
-		// 		script{
-		// 			sh "docker images"
-		// 		}
-		// 	}
-		// }
+			steps{
+				script{
+					withCredentials([usernamePassword(credentialsId: 'hub_docker_login_1', 
+													  passwordVariable: 'DOCKER_PASS', 
+													  usernameVariable: 'DOCKER_USER')]) {
+						sh '''
+						docker login --username ${DOCKER_USER} --password-stdin ${DOCKER_PASS}
+						docker build -t ${docker_image} ${docker_file_path}
+						docker push ${docker_image}
+					'''
+					}
+				}
+			}
+		}
 	}
 }
