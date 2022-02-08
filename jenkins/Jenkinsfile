@@ -48,7 +48,7 @@ pipeline{
 						-Dsonar.sources=. \
 						-Dsonar.host.url=https://sonarcloud.io \
 						-Dsonar.login=${sonarToken} \
-						-Dsonar.verbose=true
+						
 
 					'''
 				}
@@ -64,7 +64,7 @@ pipeline{
 													  passwordVariable: 'DOCKER_PASS', 
 													  usernameVariable: 'DOCKER_USER')]) {
 						sh '''
-						docker login --username ${DOCKER_USER} --password-stdin ${DOCKER_PASS}
+						
 						docker build -t ${docker_image} ${docker_file_path}
 						docker push ${docker_image}
 					'''
