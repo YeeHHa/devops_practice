@@ -65,7 +65,7 @@ pipeline{
 													  usernameVariable: 'DOCKER_USER')]) {
 						sh '''
 						
-						docker build -t ${docker_image} -f ${docker_file_path}
+						docker build -t ${docker_image} -f ${docker_file_path} .
 						docker push ${docker_image}
 					'''
 					}
