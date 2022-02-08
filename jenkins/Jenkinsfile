@@ -6,7 +6,7 @@ pipeline{
 	environment{
 		sonarKey = credentials('sonar_project_key')
 		sonarToken = credentials('sonar_token_1')
-		docker_login = credentials('docker_token_kradditz')
+		docker_login = credentials('hub_docker_login_1')
 		docker_reg = "kradditz"
 		docker_file_path = './docker/python.Dockerfile'
 		project_name = 'python_project'
@@ -62,11 +62,14 @@ pipeline{
 			steps{
 				script{
 					
-						sh '''
-						docker login -u ${docker_reg} --password-stdin ${docker_login}
-						docker build -t ${docker_image} -f ${docker_file_path} .
-						docker push ${docker_image}
-					'''
+					// 	sh '''
+					// 	docker login -u ${docker_reg} --password-stdin ${docker_login}
+					// 	docker build -t ${docker_image} -f ${docker_file_path} .
+					// 	docker push ${docker_image}
+					// '''
+					docker.withRegistry('', docker_login )
+					build_image = docker.build("${docker_image}", "-f ${docker_file_path} .")
+					build_image.push()
 					}
 				
 			}
