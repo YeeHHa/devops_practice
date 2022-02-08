@@ -7,7 +7,7 @@ pipeline{
 		sonarKey = credentials('sonar_project_key')
 		sonarToken = credentials('sonar_token_1')
 		docker_reg = "kradditz"
-		docker_file_path = './docker/python.docker'
+		docker_file_path = './docker/python.Dockerfile'
 		project_name = 'python_project'
 		docker_image = "${docker_reg}/${project_name}:${BUILD_NUMBER}"
 	}
