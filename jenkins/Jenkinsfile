@@ -16,7 +16,9 @@ pipeline{
 	stages{
 		
 		stage('setup'){
-			agent any
+			agent {
+				label 'pi_agent'
+			}
 			steps{
 				script{
 					env.MINOR_VERSION = sh(returnStdout: true, script: "git rev-list --all --count").trim()
@@ -57,16 +59,13 @@ pipeline{
 		}
 
 		stage('dockerize'){
-			agent any
+			agent {
+				label 'pi_agent'
+			}
 			
 			steps{
 				script{
 					
-					// 	sh '''
-					// 	docker login -u ${docker_reg} --password-stdin ${docker_login}
-					// 	docker build -t ${docker_image} -f ${docker_file_path} .
-					// 	docker push ${docker_image}
-					// '''
 					docker.withRegistry('', docker_login ){
 						build_image = docker.build("${docker_image}", "-f ${docker_file_path} .")
 						build_image.push()
