@@ -1,2 +1,4 @@
 .gitignore
 /k8s/k_config
+src/venv
+
